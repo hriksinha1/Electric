@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 848 1272" width="848" height="1272" fill="none">
+  <defs>
+    <linearGradient id="catAppBg" x1="0" y1="0" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="60%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="848" height="1272" fill="url(#catAppBg)"/>
+  <circle cx="424" cy="620" r="280" fill="#38BDF8" fill-opacity="0.15" filter="blur(30px)"/>
+
+  <!-- Robot Vacuum Top Down View -->
+  <g transform="translate(424, 600)">
+    <circle cx="0" cy="0" r="240" fill="#1E293B" stroke="#475569" stroke-width="4"/>
+    <circle cx="0" cy="0" r="210" fill="#0F172A" stroke="#334155" stroke-width="2"/>
+    <circle cx="0" cy="0" r="180" fill="#1E293B"/>
+    <!-- Lidar Dome -->
+    <circle cx="-50" cy="-40" r="54" fill="#334155" stroke="#38BDF8" stroke-width="2"/>
+    <circle cx="-50" cy="-40" r="38" fill="#020617"/>
+    <circle cx="-50" cy="-40" r="8" fill="#2563EB"/>
+    <!-- Power Button -->
+    <circle cx="80" cy="-20" r="20" fill="#020617" stroke="#2563EB" stroke-width="3"/>
+  </g>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1111" width="900" height="1111" fill="none">
+  <rect width="900" height="1111" fill="#0B1220"/>
+  <circle cx="450" cy="555" r="260" fill="#3B82F6" fill-opacity="0.2"/>
+  <!-- Fabric Smart Speaker -->
+  <g transform="translate(300, 360)">
+    <rect x="0" y="0" width="300" height="400" rx="90" fill="#1E293B" stroke="#334155" stroke-width="4"/>
+    <!-- Top Touch Ring -->
+    <ellipse cx="150" cy="50" rx="100" ry="24" fill="#0F172A" stroke="#2563EB" stroke-width="3"/>
+    <circle cx="150" cy="50" r="10" fill="#38BDF8"/>
+  </g>
+</svg>

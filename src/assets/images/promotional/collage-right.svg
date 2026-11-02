@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 933" width="700" height="933" fill="none">
+  <rect width="700" height="933" fill="#0B1220"/>
+  <circle cx="350" cy="466" r="260" fill="#2563EB" fill-opacity="0.25"/>
+  <!-- Smartphone Triple Camera Module Close-up -->
+  <g transform="translate(200, 300)">
+    <rect x="0" y="0" width="300" height="340" rx="40" fill="#1E293B" stroke="#475569" stroke-width="4"/>
+    <circle cx="100" cy="100" r="44" fill="#020617" stroke="#38BDF8" stroke-width="4"/>
+    <circle cx="200" cy="100" r="44" fill="#020617" stroke="#38BDF8" stroke-width="4"/>
+    <circle cx="100" cy="220" r="44" fill="#020617" stroke="#38BDF8" stroke-width="4"/>
+    <circle cx="200" cy="220" r="16" fill="#F59E0B"/>
+  </g>
+</svg>

@@ -1,6 +1,6 @@
 {
-  "name": "Homedine — Sustainable Kitchenware",
-  "description": "Thoughtfully designed, environmentally conscious kitchenware crafted from bamboo, glass, and sustainable materials for a greener home.",
+  "name": "SunshineElectric",
+  "description": "Electronics and electrical essentials designed to keep you connected, productive, and powered.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": []
 }

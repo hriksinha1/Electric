@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1026" width="1200" height="1026" fill="none">
+  <rect width="1200" height="1026" fill="#0F172A"/>
+  <circle cx="600" cy="513" r="300" fill="#2563EB" fill-opacity="0.2"/>
+  <!-- Coiled Braided Fast-Charging Cables -->
+  <g transform="translate(400, 360)">
+    <circle cx="200" cy="160" r="120" stroke="#38BDF8" stroke-width="16" fill="none" stroke-dasharray="14 8"/>
+    <circle cx="200" cy="160" r="80" stroke="#2563EB" stroke-width="14" fill="none"/>
+    <!-- Metal Connectors -->
+    <rect x="290" y="80" width="80" height="30" rx="6" fill="#E2E8F0"/>
+    <rect x="30" y="210" width="80" height="30" rx="6" fill="#E2E8F0"/>
+  </g>
+</svg>

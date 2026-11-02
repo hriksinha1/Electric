@@ -1,0 +1,20 @@
+@theme {
+  --color-navy-950: #0B1220;
+  --color-navy-900: #111827;
+  --color-ink: #171717;
+  --color-blue-700: #1D4ED8;
+  --color-blue-600: #2563EB;
+  --color-blue-500: #3B82F6;
+  --color-blue-50: #EFF6FF;
+  --color-neutral-50: #F7F8FA;
+  --color-slate-600: #475569;
+  --color-slate-500: #64748B;
+  --color-offer: #F59E0B;
+  --color-paper: #FFFFFF;
+  --font-display: 'Bricolage Grotesque', system-ui, -apple-system, sans-serif;
+  --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+}

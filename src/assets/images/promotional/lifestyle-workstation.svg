@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 833" width="1800" height="833" fill="none">
+  <defs>
+    <linearGradient id="bgLight" x1="0" y1="0" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="60%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#0B1220"/>
+    </linearGradient>
+    <linearGradient id="windowGlow" x1="100%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#93C5FD" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1800" height="833" fill="url(#bgLight)"/>
+  <rect width="1800" height="833" fill="url(#windowGlow)"/>
+
+  <!-- Architectural Window Grid (Right) -->
+  <line x1="1300" y1="0" x2="1300" y2="833" stroke="#334155" stroke-width="4" stroke-opacity="0.4"/>
+  <line x1="1550" y1="0" x2="1550" y2="833" stroke="#334155" stroke-width="4" stroke-opacity="0.4"/>
+  <line x1="1100" y1="300" x2="1800" y2="300" stroke="#334155" stroke-width="4" stroke-opacity="0.4"/>
+
+  <!-- Minimalist Desk Surface (Bottom) -->
+  <line x1="0" y1="640" x2="1800" y2="640" stroke="#475569" stroke-width="3"/>
+  <rect x="0" y="640" width="1800" height="193" fill="#0A0F1D"/>
+
+  <!-- Curved Ultrawide Monitor on Desk (Center-Right) -->
+  <g transform="translate(940, 240)">
+    <path d="M40 80 Q 280 60, 520 80 L 520 380 Q 280 395, 40 380 Z" fill="#020617" stroke="#334155" stroke-width="4"/>
+    <path d="M52 92 Q 280 74, 508 92 L 508 368 Q 280 381, 52 368 Z" fill="#1D4ED8" fill-opacity="0.4"/>
+    <!-- Monitor Stand -->
+    <path d="M250 390 L230 470 L330 470 L310 390 Z" fill="#334155"/>
+    <rect x="180" y="470" width="200" height="12" rx="6" fill="#475569"/>
+  </g>
+
+  <!-- Laptop Open (Right Side) -->
+  <g transform="translate(1420, 440)">
+    <rect x="20" y="10" width="220" height="140" rx="8" fill="#0F172A" stroke="#334155" stroke-width="2"/>
+    <rect x="26" y="16" width="208" height="128" rx="5" fill="#2563EB" fill-opacity="0.3"/>
+    <path d="M0 150 L260 150 L280 190 L-20 190 Z" fill="#1E293B"/>
+  </g>
+
+  <!-- Indoor Plant in Ceramic Pot (Left on Desk) -->
+  <g transform="translate(760, 480)">
+    <!-- Pot -->
+    <path d="M30 80 L10 160 L90 160 L70 80 Z" fill="#475569"/>
+    <!-- Leaves -->
+    <path d="M50 80 Q 20 20, 10 30 Q 35 55, 50 80" fill="#38BDF8" opacity="0.8"/>
+    <path d="M50 80 Q 50 0, 60 10 Q 55 45, 50 80" fill="#60A5FA" opacity="0.9"/>
+    <path d="M50 80 Q 80 20, 90 30 Q 65 55, 50 80" fill="#38BDF8" opacity="0.8"/>
+  </g>
+
+  <!-- Blue Glow Ambient on Workstation -->
+  <ellipse cx="1200" cy="640" rx="400" ry="24" fill="#3B82F6" fill-opacity="0.15" filter="blur(20px)"/>
+</svg>

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1157" width="900" height="1157" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="100%">
+      <stop offset="0%" stop-color="#EEF2F7"/>
+      <stop offset="100%" stop-color="#F7F8FA"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B132B"/>
+      <stop offset="60%" stop-color="#1C2541"/>
+      <stop offset="100%" stop-color="#2563EB"/>
+    </linearGradient>
+    <radialGradient id="shadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0F172A" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="900" height="1157" fill="url(#bg)"/>
+  <ellipse cx="450" cy="940" rx="340" ry="34" fill="url(#shadow)"/>
+
+  <!-- Laptop Open View -->
+  <g transform="translate(140, 260)">
+    <!-- Display Lid -->
+    <rect x="70" y="40" width="480" height="340" rx="16" fill="#0F172A" stroke="#334155" stroke-width="3"/>
+    <rect x="84" y="54" width="452" height="312" rx="10" fill="url(#screen)"/>
+    <!-- Abstract Screen Art -->
+    <circle cx="310" cy="210" r="80" fill="#3B82F6" fill-opacity="0.3"/>
+    <path d="M84 260 C 180 180, 320 340, 536 240 L 536 366 L 84 366 Z" fill="#60A5FA" fill-opacity="0.25"/>
+    <circle cx="310" cy="46" r="3" fill="#64748B"/>
+
+    <!-- Keyboard Deck / Base -->
+    <path d="M0 380 L620 380 L660 500 L-40 500 Z" fill="#1E293B" stroke="#475569" stroke-width="2"/>
+    <!-- Keyboard Keys Grid Graphic -->
+    <rect x="70" y="394" width="480" height="60" rx="6" fill="#0F172A"/>
+    <!-- Trackpad -->
+    <rect x="235" y="462" width="150" height="30" rx="4" fill="#334155" stroke="#475569" stroke-width="1"/>
+  </g>
+</svg>

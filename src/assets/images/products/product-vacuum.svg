@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1157" width="900" height="1157" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="100%">
+      <stop offset="0%" stop-color="#EEF2F7"/>
+      <stop offset="100%" stop-color="#F7F8FA"/>
+    </linearGradient>
+    <radialGradient id="shadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0F172A" stop-opacity="0.32"/>
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="900" height="1157" fill="url(#bg)"/>
+  <ellipse cx="450" cy="850" rx="310" ry="80" fill="url(#shadow)"/>
+
+  <!-- Robot Vacuum (Isometric Perspective) -->
+  <g transform="translate(450, 520)">
+    <!-- Base Lower Shell -->
+    <ellipse cx="0" cy="80" rx="300" ry="170" fill="#0F172A"/>
+    <!-- Body Main Hull -->
+    <ellipse cx="0" cy="0" rx="300" ry="170" fill="#1E293B" stroke="#475569" stroke-width="3"/>
+    <!-- Top Decorative Ring & Bumper -->
+    <ellipse cx="0" cy="-6" rx="270" ry="148" fill="#0F172A" stroke="#334155" stroke-width="2"/>
+    <ellipse cx="0" cy="-10" rx="240" ry="130" fill="#1E293B"/>
+
+    <!-- Lidar Sensor Dome Turret -->
+    <ellipse cx="-40" cy="-30" rx="64" ry="38" fill="#334155" stroke="#475569" stroke-width="2"/>
+    <ellipse cx="-40" cy="-42" rx="52" ry="30" fill="#0F172A"/>
+    <rect x="-65" y="-50" width="50" height="10" rx="3" fill="#2563EB" opacity="0.8"/>
+
+    <!-- Power & Home Button Ring -->
+    <ellipse cx="90" cy="-20" rx="22" ry="14" fill="#020617" stroke="#2563EB" stroke-width="2"/>
+    <ellipse cx="90" cy="-20" rx="6" ry="4" fill="#3B82F6"/>
+  </g>
+</svg>

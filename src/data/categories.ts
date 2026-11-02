@@ -1,61 +1,83 @@
-import { IMAGES } from './images';
+import { IMAGES, ImageSlot } from './images';
+
+export type CategoryKey =
+  | 'smartphones'
+  | 'computers'
+  | 'audio'
+  | 'appliances'
+  | 'tvs'
+  | 'smart-home'
+  | 'gaming'
+  | 'electrical';
 
 export interface Category {
   id: string;
+  key: CategoryKey;
   name: string;
   tagline: string;
-  image: string;
-  alt: string;
-  filterKey: string;
+  image?: ImageSlot;
+  featured: boolean;
 }
 
 export const CATEGORIES: Category[] = [
   {
-    id: 'cat-1',
-    name: 'CupEco',
-    tagline: 'Hand-thrown earthen clay and insulated tumblers',
-    image: IMAGES.categories.cupeco.src,
-    alt: IMAGES.categories.cupeco.alt,
-    filterKey: 'Drinkware',
+    id: 'cat-smartphones',
+    key: 'smartphones',
+    name: 'Mobiles & Smartphones',
+    tagline: 'Flagship devices, fast processors & pro camera systems',
+    image: IMAGES.categories.smartphones,
+    featured: true,
   },
   {
-    id: 'cat-2',
-    name: 'EcoSpoonery',
-    tagline: 'Pocket-ready cutlery and portable dining sets',
-    image: IMAGES.categories.ecospoonery.src,
-    alt: IMAGES.categories.ecospoonery.alt,
-    filterKey: 'Utensils',
+    id: 'cat-computers',
+    key: 'computers',
+    name: 'Computers & Laptops',
+    tagline: 'Ultrabooks, workstations & everyday computing',
+    image: IMAGES.categories.computers,
+    featured: true,
   },
   {
-    id: 'cat-3',
-    name: 'NatureSip',
-    tagline: 'Artisan bamboo stirrers, dippers & kitchen spoons',
-    image: IMAGES.categories.naturesip.src,
-    alt: IMAGES.categories.naturesip.alt,
-    filterKey: 'Utensils',
+    id: 'cat-audio',
+    key: 'audio',
+    name: 'Audio & Headphones',
+    tagline: 'Wireless over-ear headphones, earbuds & studio sound',
+    image: IMAGES.categories.audio,
+    featured: true,
   },
   {
-    id: 'cat-4',
-    name: 'FreshPitcher',
-    tagline: 'Minimalist thermal carafes and drinkware bottles',
-    image: IMAGES.categories.freshpitcher.src,
-    alt: IMAGES.categories.freshpitcher.alt,
-    filterKey: 'Drinkware',
+    id: 'cat-appliances',
+    key: 'appliances',
+    name: 'Home Appliances',
+    tagline: 'Intelligent cleaning, air care & domestic gadgets',
+    image: IMAGES.categories.appliances,
+    featured: true,
   },
   {
-    id: 'cat-5',
-    name: 'BambooBoard',
-    tagline: 'Organic pebble-shaped chopping blocks',
-    image: IMAGES.gallery.woodBoards.src,
-    alt: IMAGES.gallery.woodBoards.alt,
-    filterKey: 'Tableware',
+    id: 'cat-tvs',
+    key: 'tvs',
+    name: 'TVs & Entertainment',
+    tagline: '4K Ultra HD displays & smart streaming home theater',
+    featured: false,
   },
   {
-    id: 'cat-6',
-    name: 'GlassKeep',
-    tagline: 'Borosilicate storage jars with airtight bamboo lids',
-    image: IMAGES.products.cookware.src,
-    alt: IMAGES.products.cookware.alt,
-    filterKey: 'Cookware',
+    id: 'cat-smart-home',
+    key: 'smart-home',
+    name: 'Smart Home',
+    tagline: 'Wi-Fi plugs, sensors, smart lighting & hubs',
+    featured: false,
+  },
+  {
+    id: 'cat-gaming',
+    key: 'gaming',
+    name: 'Gaming Accessories',
+    tagline: 'Precision mechanical keyboards, low-latency mice & gear',
+    featured: false,
+  },
+  {
+    id: 'cat-electrical',
+    key: 'electrical',
+    name: 'Electrical Accessories',
+    tagline: 'Surge protectors, power strips, charging cables & adapters',
+    featured: false,
   },
 ];

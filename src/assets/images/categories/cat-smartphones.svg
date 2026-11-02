@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 848 1272" width="848" height="1272" fill="none">
+  <defs>
+    <linearGradient id="catPhoneBg" x1="0" y1="0" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="50%" stop-color="#1E3A8A"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="848" height="1272" fill="url(#catPhoneBg)"/>
+  <circle cx="424" cy="580" r="320" fill="#2563EB" fill-opacity="0.2" filter="blur(40px)"/>
+
+  <!-- Centered Floating Smartphone -->
+  <g transform="translate(264, 280)">
+    <rect x="0" y="0" width="320" height="640" rx="48" fill="#020617" stroke="#38BDF8" stroke-width="4"/>
+    <rect x="12" y="12" width="296" height="616" rx="36" fill="#1D4ED8"/>
+    <path d="M12 380 Q 120 280, 220 360 T 308 320 L 308 628 L 12 628 Z" fill="#60A5FA" fill-opacity="0.35"/>
+    <circle cx="160" cy="40" r="6" fill="#020617"/>
+    <!-- Glass Sheen -->
+    <path d="M12 12 L 200 12 L 50 628 L 12 628 Z" fill="#FFFFFF" fill-opacity="0.08"/>
+  </g>
+</svg>

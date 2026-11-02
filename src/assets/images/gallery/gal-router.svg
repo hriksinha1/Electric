@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1026" width="1200" height="1026" fill="none">
+  <rect width="1200" height="1026" fill="#0F172A"/>
+  <circle cx="600" cy="513" r="320" fill="#3B82F6" fill-opacity="0.15"/>
+  <!-- Wi-Fi Router with 4 Antennas -->
+  <g transform="translate(400, 480)">
+    <!-- Antennas -->
+    <line x1="40" y1="-120" x2="40" y2="40" stroke="#CBD5E1" stroke-width="8" stroke-linecap="round"/>
+    <line x1="140" y1="-140" x2="140" y2="40" stroke="#CBD5E1" stroke-width="8" stroke-linecap="round"/>
+    <line x1="260" y1="-140" x2="260" y2="40" stroke="#CBD5E1" stroke-width="8" stroke-linecap="round"/>
+    <line x1="360" y1="-120" x2="360" y2="40" stroke="#CBD5E1" stroke-width="8" stroke-linecap="round"/>
+    <!-- Router Base Box -->
+    <rect x="0" y="40" width="400" height="120" rx="24" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="4"/>
+    <!-- LED Indicators -->
+    <circle cx="100" cy="100" r="5" fill="#22C55E"/>
+    <circle cx="150" cy="100" r="5" fill="#22C55E"/>
+    <circle cx="200" cy="100" r="5" fill="#2563EB"/>
+    <circle cx="250" cy="100" r="5" fill="#22C55E"/>
+    <circle cx="300" cy="100" r="5" fill="#22C55E"/>
+  </g>
+</svg>

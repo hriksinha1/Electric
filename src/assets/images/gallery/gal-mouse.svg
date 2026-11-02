@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1111" width="900" height="1111" fill="none">
+  <rect width="900" height="1111" fill="#0B1220"/>
+  <circle cx="450" cy="555" r="240" fill="#2563EB" fill-opacity="0.2"/>
+  <!-- Ergonomic Wireless Mouse -->
+  <g transform="translate(300, 360)">
+    <path d="M150 0 C 230 0, 270 120, 260 260 C 250 360, 220 400, 150 400 C 80 400, 50 360, 40 260 C 30 120, 70 0, 150 0 Z" fill="#1E293B" stroke="#475569" stroke-width="4"/>
+    <line x1="150" y1="20" x2="150" y2="160" stroke="#334155" stroke-width="3"/>
+    <!-- Scroll Wheel -->
+    <rect x="138" y="60" width="24" height="60" rx="10" fill="#38BDF8"/>
+  </g>
+</svg>

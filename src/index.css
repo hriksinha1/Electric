@@ -1,29 +1,8 @@
 @import "tailwindcss";
+@import "./styles/tokens.css";
 
 @layer base {
   :root {
-    --green-950: #0C1F17;
-    --green-900: #12291F;
-    --green-800: #1C3A2C;
-    --green-700: #14543B;
-    --green-600: #2C6B4D;
-    --green-500: #4A8760;
-    --sage-400: #8FA58A;
-    --sage-200: #D3DBC4;
-    --sage-100: #EEEFDC;
-    --ivory: #FAF8F1;
-    --paper: #FFFFFF;
-    --cream: #F6F0C8;
-    --stone-top: #C9C8C1;
-    --stone-bottom: #EFECE4;
-    --grey-600: #5E615C;
-    --grey-400: #B3B8B3;
-    --ink: #1B1F1C;
-    
-    --font-display: 'Bricolage Grotesque', system-ui, -apple-system, sans-serif;
-    --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
-    --font-accent: var(--font-display);
-    
     --gutter: 20px;
   }
 
@@ -36,8 +15,8 @@
   html {
     scroll-behavior: smooth;
     font-family: var(--font-body);
-    color: var(--ink);
-    background-color: var(--paper);
+    color: var(--color-ink);
+    background-color: var(--color-paper);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -61,12 +40,6 @@
   font-family: var(--font-body);
 }
 
-.font-accent {
-  font-family: var(--font-accent);
-  font-style: italic;
-}
-
-/* Custom scrollbar utility for carousels */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -75,7 +48,6 @@
   scrollbar-width: none;
 }
 
-/* Subtle image grain */
 .bg-grain {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
 }

@@ -2,30 +2,34 @@ export interface BrandValue {
   id: string;
   firstWord: string;
   secondWord: string;
-  icon: 'leaf' | 'globe' | 'sprout';
+  description: string;
+  icon: 'sparkles' | 'shield' | 'headset';
   isPill?: boolean;
 }
 
 export const BRAND_VALUES: BrandValue[] = [
   {
     id: 'val-1',
-    firstWord: 'Natural',
-    secondWord: 'Finish',
-    icon: 'leaf',
+    firstWord: 'Carefully Selected',
+    secondWord: 'Products',
+    description: 'A focused range, chosen for everyday use.',
+    icon: 'sparkles',
     isPill: false,
   },
   {
     id: 'val-2',
-    firstWord: 'Eco',
-    secondWord: 'Innovation',
-    icon: 'globe',
-    isPill: true, // middle tile is pill-shaped with radius 999px
+    firstWord: 'Secure',
+    secondWord: 'Shopping',
+    description: "Clear product details, so you know what you're buying.",
+    icon: 'shield',
+    isPill: true,
   },
   {
     id: 'val-3',
-    firstWord: 'Sustainable',
-    secondWord: 'Materials',
-    icon: 'sprout',
+    firstWord: 'Customer',
+    secondWord: 'Support',
+    description: 'Questions about a product? Get in touch.',
+    icon: 'headset',
     isPill: false,
   },
 ];

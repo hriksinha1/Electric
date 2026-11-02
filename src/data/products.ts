@@ -1,152 +1,149 @@
-import { IMAGES } from './images';
+import { IMAGES, ImageSlot } from './images';
+import { CategoryKey } from './categories';
+
+export type Availability = 'in-stock' | 'out-of-stock' | 'preorder';
 
 export interface ProductVariant {
   id: string;
   name: string;
   color: string;
-  image?: string;
 }
 
 export interface Product {
   id: string;
+  slug: string;
   title: string;
+  category: CategoryKey;
+  brand: string;
   price: number;
-  currency: string;
-  badge?: string;
-  category: 'Drinkware' | 'Cookware' | 'Appliances' | 'Utensils' | 'Tableware';
-  image: string;
-  alt: string;
-  variants: ProductVariant[];
+  originalPrice?: number;
   description: string;
+  image: ImageSlot;
+  availability: Availability;
+  badge?: 'New' | 'Best seller' | 'Deal' | 'Pre-order';
+  variants?: ProductVariant[];
+  isDemo: true;
 }
 
 export const PRODUCTS: Product[] = [
   {
-    id: 'prod-drinkware-bottle',
-    title: 'Reusable drinkware for a greener lifestyle.',
-    price: 43.85,
-    currency: 'USD',
-    badge: 'Promotion',
-    category: 'Drinkware',
-    image: IMAGES.products.bottle.src,
-    alt: IMAGES.products.bottle.alt,
-    description: 'Triple-wall vacuum insulated stainless steel with recycled bamboo loop cap. Keeps liquids cold for 24 hours.',
+    id: 'prod-phone',
+    slug: 'amoled-smartphone-128gb',
+    title: '6.5" AMOLED Smartphone, 128 GB',
+    category: 'smartphones',
+    brand: 'Sample Brand',
+    price: 24999,
+    originalPrice: 27999,
+    description: 'High-refresh AMOLED display, 128 GB storage, and a triple rear camera system.',
+    image: IMAGES.products.smartphone,
+    availability: 'in-stock',
+    badge: 'Deal',
     variants: [
-      { id: 'v1', name: 'Sky Blue', color: '#93C5FD' },
-      { id: 'v2', name: 'Slate Gray', color: '#64748B' },
-      { id: 'v3', name: 'Forest Green', color: '#14543B' },
+      { id: 'v1', name: 'Midnight Black', color: '#0F172A' },
+      { id: 'v2', name: 'Electric Blue', color: '#2563EB' },
+      { id: 'v3', name: 'Silver Slate', color: '#94A3B8' },
     ],
+    isDemo: true,
   },
   {
-    id: 'prod-cookware-pots',
-    title: 'Non-toxic cookware for sustainable cooking.',
-    price: 78.35,
-    currency: 'Cookware',
+    id: 'prod-laptop',
+    slug: '14-inch-ultrabook-laptop',
+    title: '14" Ultrabook Laptop, 16 GB RAM',
+    category: 'computers',
+    brand: 'Sample Brand',
+    price: 62999,
+    description: 'Slim lightweight aluminum chassis with 16 GB unified RAM and fast solid-state storage.',
+    image: IMAGES.products.laptop,
+    availability: 'in-stock',
     badge: 'New',
-    category: 'Cookware',
-    image: IMAGES.products.cookware.src,
-    alt: IMAGES.products.cookware.alt,
-    description: 'Mineral-based non-toxic ceramic non-stick coating free of PTFE, PFOA, and heavy metals. Oven-safe up to 450°F.',
-    variants: [
-      { id: 'v1', name: 'Citrus Lime', color: '#A3E635' },
-      { id: 'v2', name: 'Terracotta Orange', color: '#EA580C' },
-      { id: 'v3', name: 'Ocean Slate', color: '#475569' },
-    ],
+    isDemo: true,
   },
   {
-    id: 'prod-kettle-toaster',
-    title: 'Kettle & Toaster eco-friendly meals.',
-    price: 143.65,
-    currency: 'USD',
-    badge: 'Customer favorite',
-    category: 'Appliances',
-    image: IMAGES.products.kettle.src,
-    alt: IMAGES.products.kettle.alt,
-    description: 'Precision electric gooseneck kettle made with fluted food-grade steel and responsibly harvested bamboo base.',
-    variants: [
-      { id: 'v1', name: 'Sage Green', color: '#8FA58A' },
-      { id: 'v2', name: 'Clay Sand', color: '#D4C5B9' },
-      { id: 'v3', name: 'Nordic Blue', color: '#3B82F6' },
-    ],
-  },
-  {
-    id: 'prod-utensil-holder',
-    title: 'Bamboo Made Utensil Holder',
-    price: 26.27,
-    currency: 'USD',
-    badge: 'New',
-    category: 'Utensils',
-    image: IMAGES.products.utensils.src,
-    alt: IMAGES.products.utensils.alt,
-    description: 'Set of 6 handcrafted FSC-certified bamboo spoons, turners, and dippers stored in a glazed mustard ceramic crock.',
-    variants: [
-      { id: 'v1', name: 'Mustard Yellow', color: '#EAB308' },
-      { id: 'v2', name: 'Olive Green', color: '#65A30D' },
-      { id: 'v3', name: 'Charcoal Matte', color: '#334155' },
-    ],
-  },
-  {
-    id: 'prod-cup-set',
-    title: 'Artisanal Ceramic Cup Duo Set',
-    price: 34.00,
-    currency: 'USD',
+    id: 'prod-headphones',
+    slug: 'wireless-noise-cancelling-headphones',
+    title: 'Wireless Noise-Cancelling Headphones',
+    category: 'audio',
+    brand: 'Sample Brand',
+    price: 8499,
+    originalPrice: 9999,
+    description: 'Over-ear active noise cancellation with memory foam earcups and quick-charge support.',
+    image: IMAGES.products.headphones,
+    availability: 'in-stock',
     badge: 'Best seller',
-    category: 'Drinkware',
-    image: IMAGES.categories.cupeco.src,
-    alt: IMAGES.categories.cupeco.alt,
-    description: 'Two handcrafted organic clay mugs glazed with lead-free natural earth pigments. Dishwasher and microwave safe.',
     variants: [
-      { id: 'v1', name: 'Rust Terracotta', color: '#C2410C' },
-      { id: 'v2', name: 'Sand Cream', color: '#F6F0C8' },
-      { id: 'v3', name: 'Deep Sage', color: '#4A8760' },
+      { id: 'v1', name: 'Matte Charcoal', color: '#1E293B' },
+      { id: 'v2', name: 'Cobalt Navy', color: '#1D4ED8' },
+      { id: 'v3', name: 'Chalk White', color: '#F1F5F9' },
     ],
+    isDemo: true,
   },
   {
-    id: 'prod-travel-cutlery',
-    title: 'Eco Travel Spoonery Cutlery Kit',
-    price: 22.50,
-    currency: 'USD',
-    badge: 'Eco Choice',
-    category: 'Utensils',
-    image: IMAGES.categories.ecospoonery.src,
-    alt: IMAGES.categories.ecospoonery.alt,
-    description: 'Anodized titanium fork, spoon, and chopsticks packed in a washable recycled wheat-straw travel case.',
-    variants: [
-      { id: 'v1', name: 'Navy & Ochre', color: '#1E293B' },
-      { id: 'v2', name: 'Forest Green', color: '#14543B' },
-      { id: 'v3', name: 'Terracotta', color: '#9A3412' },
-    ],
+    id: 'prod-tv',
+    slug: '55-inch-4k-smart-tv',
+    title: '55" 4K Smart TV',
+    category: 'tvs',
+    brand: 'Sample Brand',
+    price: 38999,
+    description: 'Thin-bezel 4K Ultra HD smart television with HDR support and integrated streaming apps.',
+    image: IMAGES.products.tv,
+    availability: 'preorder',
+    badge: 'Pre-order',
+    isDemo: true,
   },
   {
-    id: 'prod-cutting-boards',
-    title: 'Grain Slice Organic Pebble Boards',
-    price: 48.90,
-    currency: 'USD',
-    badge: 'Staff Pick',
-    category: 'Tableware',
-    image: IMAGES.gallery.woodBoards.src,
-    alt: IMAGES.gallery.woodBoards.alt,
-    description: 'Crafted from reclaimed solid walnut and white oak offcuts, treated with natural organic cold-pressed walnut oil.',
-    variants: [
-      { id: 'v1', name: 'Walnut & Oak', color: '#78350F' },
-      { id: 'v2', name: 'Maple Natural', color: '#D97706' },
-      { id: 'v3', name: 'Charred Oak', color: '#1C1917' },
-    ],
+    id: 'prod-vacuum',
+    slug: 'robot-vacuum-cleaner',
+    title: 'Robot Vacuum Cleaner',
+    category: 'appliances',
+    brand: 'Sample Brand',
+    price: 17499,
+    originalPrice: 19999,
+    description: 'Automated floor vacuum with precision lidar room mapping and multi-surface brush roll.',
+    image: IMAGES.products.vacuum,
+    availability: 'in-stock',
+    badge: 'Deal',
+    isDemo: true,
   },
   {
-    id: 'prod-steam-pot',
-    title: 'OasiSteam Multi-Pot Slow Cooker',
-    price: 119.50,
-    currency: 'USD',
-    badge: 'New Arrival',
-    category: 'Appliances',
-    image: IMAGES.editorial.newArrival.src,
-    alt: IMAGES.editorial.newArrival.alt,
-    description: 'Low-energy smart steam cooker with ceramic non-stick insert and tempered glass lid for nutritious zero-waste dining.',
+    id: 'prod-plug',
+    slug: 'smart-wifi-plug-2-pack',
+    title: 'Smart Wi-Fi Plug, 2-pack',
+    category: 'smart-home',
+    brand: 'Sample Brand',
+    price: 1799,
+    description: 'Pair of grounded Wi-Fi plugs enabling schedule automation and remote mobile app switching.',
+    image: IMAGES.products.smartPlug,
+    availability: 'in-stock',
+    badge: 'New',
+    isDemo: true,
+  },
+  {
+    id: 'prod-keyboard',
+    slug: 'mechanical-gaming-keyboard',
+    title: 'Mechanical Gaming Keyboard',
+    category: 'gaming',
+    brand: 'Sample Brand',
+    price: 4299,
+    description: 'Compact mechanical keyboard featuring tactile switches and adjustable ambient backlighting.',
+    image: IMAGES.products.keyboard,
+    availability: 'out-of-stock',
     variants: [
-      { id: 'v1', name: 'Dark Moss', color: '#14543B' },
-      { id: 'v2', name: 'Pale Sage', color: '#8FA58A' },
-      { id: 'v3', name: 'Oatmeal', color: '#E2E8F0' },
+      { id: 'v1', name: 'Tactile Blue', color: '#2563EB' },
+      { id: 'v2', name: 'Stealth Grey', color: '#334155' },
     ],
+    isDemo: true,
+  },
+  {
+    id: 'prod-powerstrip',
+    slug: 'surge-protected-power-strip',
+    title: '6-Socket Surge-Protected Power Strip',
+    category: 'electrical',
+    brand: 'Sample Brand',
+    price: 1299,
+    description: 'Heavy-duty 6-outlet surge protector with illuminated master power switch and circuit protection.',
+    image: IMAGES.products.powerStrip,
+    availability: 'in-stock',
+    badge: 'Best seller',
+    isDemo: true,
   },
 ];

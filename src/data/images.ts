@@ -1,136 +1,245 @@
+import heroWorkspace from '../assets/images/hero/hero-electronics-workspace.svg';
+import lifestyleWorkstation from '../assets/images/promotional/lifestyle-workstation.svg';
+import bestsellersFeature from '../assets/images/promotional/bestsellers-feature.svg';
+import newArrivalsFeature from '../assets/images/promotional/new-arrivals-feature.svg';
+
+import productSmartphone from '../assets/images/products/product-smartphone.svg';
+import productLaptop from '../assets/images/products/product-laptop.svg';
+import productHeadphones from '../assets/images/products/product-headphones.svg';
+import productTv from '../assets/images/products/product-tv.svg';
+import productVacuum from '../assets/images/products/product-vacuum.svg';
+import productSmartPlug from '../assets/images/products/product-smart-plug.svg';
+import productKeyboard from '../assets/images/products/product-keyboard.svg';
+import productPowerStrip from '../assets/images/products/product-power-strip.svg';
+
+import catSmartphones from '../assets/images/categories/cat-smartphones.svg';
+import catComputers from '../assets/images/categories/cat-computers.svg';
+import catAudio from '../assets/images/categories/cat-audio.svg';
+import catAppliances from '../assets/images/categories/cat-appliances.svg';
+
+import galTablet from '../assets/images/gallery/gal-tablet.svg';
+import galEarbuds from '../assets/images/gallery/gal-earbuds.svg';
+import galRouter from '../assets/images/gallery/gal-router.svg';
+import galPrinter from '../assets/images/gallery/gal-printer.svg';
+import galCables from '../assets/images/gallery/gal-cables.svg';
+import galSpeaker from '../assets/images/gallery/gal-speaker.svg';
+import galDeskSetup from '../assets/images/gallery/gal-desk-setup.svg';
+import galMouse from '../assets/images/gallery/gal-mouse.svg';
+
+import collageCenter from '../assets/images/promotional/collage-center.svg';
+import collageLeft from '../assets/images/promotional/collage-left.svg';
+import collageRight from '../assets/images/promotional/collage-right.svg';
+
+import newsletter1 from '../assets/images/promotional/newsletter-1.svg';
+import newsletter2 from '../assets/images/promotional/newsletter-2.svg';
+import newsletter3 from '../assets/images/promotional/newsletter-3.svg';
+import newsletter4 from '../assets/images/promotional/newsletter-4.svg';
+
 export interface ImageSlot {
   src: string;
   alt: string;
-  width?: number;
-  height?: number;
-  aspectRatio?: string;
-  status: 'final' | 'placeholder';
+  width: number;
+  height: number;
+  decorative?: boolean;
 }
 
 export const IMAGES = {
   hero: {
-    src: '/src/assets/images/hero_vintage_kitchen_1793602104574.jpg',
-    alt: 'Vintage teal kitchen with brass fixtures, wooden worktop, and potted herbs by the window',
-    aspectRatio: '21/10',
-    status: 'final',
-  },
-  products: {
-    bottle: {
-      src: '/src/assets/images/product_reusable_bottle_1793602104962.jpg',
-      alt: 'Deep forest green insulated steel reusable water bottle',
-      aspectRatio: '7/9',
-      status: 'final',
-    },
-    cookware: {
-      src: '/src/assets/images/product_eco_cookware_1793602105731.jpg',
-      alt: 'Lime green saucepan and terracotta orange ceramic cooking pot',
-      aspectRatio: '7/9',
-      status: 'final',
-    },
-    kettle: {
-      src: '/src/assets/images/product_sage_kettle_1793602107008.jpg',
-      alt: 'Sage green fluted electric kettle with bamboo handle and wooden base',
-      aspectRatio: '7/9',
-      status: 'final',
-    },
-    utensils: {
-      src: '/src/assets/images/product_utensil_holder_1793602127308.jpg',
-      alt: 'Natural bamboo kitchen spoons in a mustard yellow ceramic utensil crock',
-      aspectRatio: '7/9',
-      status: 'final',
-    },
+    src: heroWorkspace,
+    alt: 'Laptop, smartphone and wireless headphones on a dark desk with soft ambient lighting',
+    width: 2000,
+    height: 952,
   },
   lifestyle: {
-    src: '/src/assets/images/kitchen_lifestyle_sage_1793602107070.jpg',
-    alt: 'Sage green shaker kitchen with warm under-cabinet lighting and checkered floor',
-    aspectRatio: '2.16/1',
-    status: 'final',
-  },
-  categories: {
-    cupeco: {
-      src: '/src/assets/images/cat_cupeco_1793602130429.jpg',
-      alt: 'Rustic terracotta handmade ceramic coffee mug on a solid wood block',
-      aspectRatio: '2/3',
-      status: 'final',
-    },
-    ecospoonery: {
-      src: '/src/assets/images/cat_ecospoonery_1793602130954.jpg',
-      alt: 'Eco travel cutlery set in navy and yellow case on green surface',
-      aspectRatio: '2/3',
-      status: 'final',
-    },
-    naturesip: {
-      src: '/src/assets/images/cat_naturesip_1793602151843.jpg',
-      alt: 'Polished wooden cooking utensils in a ceramic container',
-      aspectRatio: '2/3',
-      status: 'final',
-    },
-    freshpitcher: {
-      src: '/src/assets/images/cat_freshpitcher_1793602151308.jpg',
-      alt: 'Hands holding a deep green eco bottle against rich red background',
-      aspectRatio: '2/3',
-      status: 'final',
-    },
+    src: lifestyleWorkstation,
+    alt: 'Clean modern workspace with ultrawide display, laptop and natural light',
+    width: 1800,
+    height: 833,
   },
   editorial: {
     bestseller: {
-      src: '/src/assets/images/bestseller_ricecooker_1793602128300.jpg',
-      alt: 'Sage green and cream ceramic rice cookers on terracotta blocks with fresh herbs',
-      aspectRatio: '1.22/1',
-      status: 'final',
+      src: bestsellersFeature,
+      alt: 'Smart speaker, earbuds case and smartwatch on geometric pedestals',
+      width: 1200,
+      height: 984,
     },
     newArrival: {
-      src: '/src/assets/images/newarrival_steampot_1793602130331.jpg',
-      alt: 'Modern green steam pot multi-cooker with fresh vegetables against yellow wall',
-      aspectRatio: '1.22/1',
-      status: 'final',
+      src: newArrivalsFeature,
+      alt: 'Next-generation smartphone and wireless audio accessories on launch podium',
+      width: 1200,
+      height: 984,
+    },
+  },
+  products: {
+    smartphone: {
+      src: productSmartphone,
+      alt: '6.5-inch AMOLED smartphone with triple camera system on neutral studio background',
+      width: 900,
+      height: 1157,
+    },
+    laptop: {
+      src: productLaptop,
+      alt: '14-inch slim ultrabook laptop with backlit keyboard on neutral background',
+      width: 900,
+      height: 1157,
+    },
+    headphones: {
+      src: productHeadphones,
+      alt: 'Wireless over-ear noise-cancelling headphones on neutral background',
+      width: 900,
+      height: 1157,
+    },
+    tv: {
+      src: productTv,
+      alt: '55-inch thin-bezel 4K smart television on slim stand',
+      width: 900,
+      height: 1157,
+    },
+    vacuum: {
+      src: productVacuum,
+      alt: 'Robot vacuum cleaner with smart navigation lidar sensor',
+      width: 900,
+      height: 1157,
+    },
+    smartPlug: {
+      src: productSmartPlug,
+      alt: 'Compact white smart Wi-Fi plugs with LED status indicators',
+      width: 900,
+      height: 1157,
+    },
+    keyboard: {
+      src: productKeyboard,
+      alt: 'Mechanical gaming keyboard with soft ambient backlighting',
+      width: 900,
+      height: 1157,
+    },
+    powerStrip: {
+      src: productPowerStrip,
+      alt: '6-socket surge-protected power strip with master switch',
+      width: 900,
+      height: 1157,
+    },
+  },
+  categories: {
+    smartphones: {
+      src: catSmartphones,
+      alt: 'Modern mobile devices and smartphones category',
+      width: 848,
+      height: 1272,
+    },
+    computers: {
+      src: catComputers,
+      alt: 'Laptops, desktops and computing essentials category',
+      width: 848,
+      height: 1272,
+    },
+    audio: {
+      src: catAudio,
+      alt: 'Personal audio, headphones and speakers category',
+      width: 848,
+      height: 1272,
+    },
+    appliances: {
+      src: catAppliances,
+      alt: 'Smart home cleaning and domestic appliances category',
+      width: 848,
+      height: 1272,
     },
   },
   gallery: {
-    sizzlePan: {
-      src: '/src/assets/images/gallery_sizzle_pan_1793602175018.jpg',
-      alt: 'Terracotta salmon enameled frying pan with lid beside dark pan overhead',
-      status: 'final',
+    tablet: {
+      src: galTablet,
+      alt: 'Tablet device with precision stylus on desk',
+      width: 1200,
+      height: 1026,
     },
-    woodBoards: {
-      src: '/src/assets/images/gallery_wood_boards_1793602175782.jpg',
-      alt: 'Four artisan organic wood grain cutting boards on dark teal backdrop',
-      status: 'final',
+    earbuds: {
+      src: galEarbuds,
+      alt: 'Wireless earbuds in compact charging case',
+      width: 900,
+      height: 1111,
     },
-    ceramicPots: {
-      src: '/src/assets/images/gallery_ceramic_pots_1793602176966.jpg',
-      alt: 'Pastel yellow and cream ceramic pots on pastel pedestals',
-      status: 'final',
+    router: {
+      src: galRouter,
+      alt: 'High-speed dual-band Wi-Fi router',
+      width: 1200,
+      height: 1026,
+    },
+    printer: {
+      src: galPrinter,
+      alt: 'Compact wireless all-in-one printer',
+      width: 900,
+      height: 1111,
+    },
+    cables: {
+      src: galCables,
+      alt: 'Braided fast-charging cables and power adapters',
+      width: 1200,
+      height: 1026,
+    },
+    speaker: {
+      src: galSpeaker,
+      alt: 'Fabric-wrapped smart home audio speaker',
+      width: 900,
+      height: 1111,
+    },
+    deskSetup: {
+      src: galDeskSetup,
+      alt: 'Dual-monitor ergonomic productivity desk setup',
+      width: 1200,
+      height: 1026,
+    },
+    mouse: {
+      src: galMouse,
+      alt: 'Ergonomic wireless productivity mouse',
+      width: 900,
+      height: 1111,
     },
   },
   collage: {
     center: {
-      src: '/src/assets/images/collage_center_1793602152004.jpg',
-      alt: 'Teal skillet with sunny side up eggs, toasted sourdough, and wooden butter knife',
-      aspectRatio: '1.6/1',
-      status: 'final',
+      src: collageCenter,
+      alt: 'Overhead flatlay of laptop, smartphone and audio devices',
+      width: 1400,
+      height: 875,
+    },
+    left: {
+      src: collageLeft,
+      alt: 'Precision aluminum laptop hinge detail',
+      width: 700,
+      height: 933,
+    },
+    right: {
+      src: collageRight,
+      alt: 'Smartphone multi-lens camera module detail',
+      width: 700,
+      height: 933,
     },
   },
   newsletter: {
-    dutchOven: {
-      src: '/src/assets/images/newsletter_dutch_oven_1793602153115.jpg',
-      alt: 'Terracotta enameled Dutch oven with artisan crusty bread',
-      status: 'final',
+    item1: {
+      src: newsletter1,
+      alt: 'Smartwatch and smartphone on wireless charger',
+      width: 900,
+      height: 563,
     },
-    yellowPot: {
-      src: '/src/assets/images/newsletter_yellow_pot_1793602177261.jpg',
-      alt: 'Yellow casserole pot with chopped carrots on pink stone surface',
-      status: 'final',
+    item2: {
+      src: newsletter2,
+      alt: 'Wireless earbuds charging case',
+      width: 900,
+      height: 563,
     },
-    ceramicBowls: {
-      src: '/src/assets/images/newsletter_ceramic_bowls_1793602178576.jpg',
-      alt: 'Glazed handmade ceramic bowls in earth tones',
-      status: 'final',
+    item3: {
+      src: newsletter3,
+      alt: 'Mechanical gaming keyboard and mouse',
+      width: 900,
+      height: 563,
     },
-    familyCooking: {
-      src: '/src/assets/images/newsletter_family_cooking_1793602153940.jpg',
-      alt: 'Grandmother and child happily cooking together in kitchen',
-      status: 'final',
+    item4: {
+      src: newsletter4,
+      alt: 'Smart home hub and plug on living room shelf',
+      width: 900,
+      height: 563,
     },
   },
-} as const;
+} as const satisfies Record<string, unknown>;

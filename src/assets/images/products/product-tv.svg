@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1157" width="900" height="1157" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="100%">
+      <stop offset="0%" stop-color="#EEF2F7"/>
+      <stop offset="100%" stop-color="#F7F8FA"/>
+    </linearGradient>
+    <linearGradient id="tvDisplay" x1="0" y1="0" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="40%" stop-color="#1E3A8A"/>
+      <stop offset="70%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
+    </linearGradient>
+    <radialGradient id="shadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0F172A" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="900" height="1157" fill="url(#bg)"/>
+  <ellipse cx="450" cy="930" rx="360" ry="32" fill="url(#shadow)"/>
+
+  <!-- 55" Smart TV -->
+  <g transform="translate(70, 240)">
+    <!-- Thin Bezel Outer Frame -->
+    <rect x="0" y="0" width="760" height="460" rx="8" fill="#020617" stroke="#334155" stroke-width="3"/>
+    <!-- Active 4K Display -->
+    <rect x="8" y="8" width="744" height="444" rx="4" fill="url(#tvDisplay)"/>
+    <!-- Vibrant 4K Display Landscape Art -->
+    <path d="M8 280 C 180 180, 360 380, 560 220 T 752 300 L 752 452 L 8 452 Z" fill="#3B82F6" fill-opacity="0.4"/>
+    <path d="M8 340 C 220 280, 440 380, 620 320 T 752 380 L 752 452 L 8 452 Z" fill="#F59E0B" fill-opacity="0.3"/>
+    <circle cx="580" cy="140" r="50" fill="#FDE68A" fill-opacity="0.5"/>
+
+    <!-- Bottom Center Brand Accent / Power LED -->
+    <rect x="360" y="456" width="40" height="4" fill="#334155"/>
+    <circle cx="380" cy="458" r="1.5" fill="#3B82F6"/>
+
+    <!-- Stand Neck & Footing -->
+    <path d="M350 460 L330 540 L430 540 L410 460 Z" fill="#1E293B"/>
+    <rect x="240" y="540" width="280" height="16" rx="8" fill="#334155" stroke="#475569" stroke-width="1.5"/>
+  </g>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1111" width="900" height="1111" fill="none">
+  <rect width="900" height="1111" fill="#0B1220"/>
+  <circle cx="450" cy="555" r="260" fill="#60A5FA" fill-opacity="0.15"/>
+  <!-- Compact All-in-One Printer -->
+  <g transform="translate(200, 420)">
+    <rect x="0" y="0" width="500" height="260" rx="20" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="4"/>
+    <rect x="50" y="30" width="400" height="80" rx="8" fill="#F1F5F9"/>
+    <!-- Paper Feed Tray -->
+    <rect x="120" y="-80" width="260" height="90" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="3"/>
+    <!-- Status Display -->
+    <rect x="360" y="160" width="80" height="40" rx="6" fill="#0F172A"/>
+    <circle cx="400" cy="180" r="4" fill="#38BDF8"/>
+  </g>
+</svg>
