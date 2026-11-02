@@ -1,6 +1,6 @@
 import React from 'react';
+import { Menu, Search, ShoppingBag, User } from 'lucide-react';
 import { SITE_CONFIG } from '../../data/site';
-import { CartBagIcon, UserIcon, SearchIcon, MenuIcon } from '../icons';
 import { useCart } from '../../hooks/useCart';
 
 interface HeaderProps {
@@ -8,6 +8,9 @@ interface HeaderProps {
   onOpenMobileMenu: () => void;
   onToggleAccount: (e: React.MouseEvent) => void;
 }
+
+const ICON_BUTTON =
+  'w-10 h-10 rounded-full bg-white/15 backdrop-blur-xs flex items-center justify-center text-white hover:bg-white/25 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white';
 
 export const Header: React.FC<HeaderProps> = ({
   onOpenSearch,
@@ -18,23 +21,22 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <header className="w-full pt-6 md:pt-8 px-6 md:px-10 flex items-center justify-between z-20">
-      {/* Left zone: Navigation links (Desktop) & Hamburger (Mobile) */}
-      <div className="flex items-center">
+      <div className="flex items-center flex-1">
         <button
           type="button"
           onClick={onOpenMobileMenu}
-          className="md:hidden w-10 h-10 rounded-full bg-white/15 backdrop-blur-xs flex items-center justify-center text-white hover:bg-white/25 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+          className={`md:hidden ${ICON_BUTTON}`}
           aria-label="Open mobile navigation"
         >
-          <MenuIcon className="w-5 h-5" />
+          <Menu className="w-5 h-5" aria-hidden="true" />
         </button>
 
-        <nav aria-label="Primary" className="hidden md:flex items-center gap-7">
+        <nav aria-label="Primary" className="hidden md:flex items-center gap-6 lg:gap-7">
           {SITE_CONFIG.navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className="text-[15px] font-body font-medium text-white/95 hover:text-white transition-colors duration-150 relative py-1 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white rounded-xs"
+              className="text-[15px] font-body font-medium text-white/95 hover:text-white transition-colors py-1 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white rounded-sm"
             >
               {link.label}
             </a>
@@ -42,69 +44,58 @@ export const Header: React.FC<HeaderProps> = ({
         </nav>
       </div>
 
-      {/* Center zone: Brand wordmark */}
-      <div className="flex items-center justify-center">
-        <a
-          href="#"
-          className="font-display text-2xl md:text-3xl font-light text-[#F6F0C8] tracking-[-0.06em] select-none hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#F6F0C8] rounded-xs"
-          aria-label="Homedine Home"
-        >
-          {SITE_CONFIG.brandName}
-        </a>
-      </div>
+      <a
+        href="#"
+        className="font-display text-lg sm:text-xl md:text-2xl font-semibold uppercase text-white tracking-[-0.03em] select-none hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white rounded-sm"
+        aria-label={`${SITE_CONFIG.brandName} home`}
+      >
+        {SITE_CONFIG.brandName}
+      </a>
 
-      {/* Right zone: Search pill + Bag icon + Account icon */}
-      <div className="flex items-center gap-2.5 md:gap-3">
-        {/* Desktop search pill */}
+      <div className="flex items-center justify-end gap-2.5 md:gap-3 flex-1">
         <button
           type="button"
           onClick={onOpenSearch}
-          className="hidden md:flex items-center gap-3 h-10 px-4 bg-white/95 hover:bg-white text-[#1B1F1C] rounded-full shadow-xs text-xs md:text-sm font-body transition-all duration-150 w-56 lg:w-64 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14543B]"
+          className="hidden md:flex items-center gap-3 h-10 px-4 bg-white/95 hover:bg-white text-navy-900 rounded-xl shadow-xs text-sm font-body transition-all w-48 lg:w-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
           aria-label="Search products"
         >
-          <SearchIcon className="w-4 h-4 text-[#5E615C] shrink-0" />
-          <span className="text-[#5E615C] text-xs">Search Product...</span>
-          <kbd className="ml-auto text-[10px] font-mono bg-black/5 px-1.5 py-0.5 rounded text-[#5E615C]">
+          <Search className="w-4 h-4 text-slate-600 shrink-0" aria-hidden="true" />
+          <span className="text-slate-600 text-xs">Search products...</span>
+          <kbd className="ml-auto text-[10px] font-mono bg-navy-900/5 px-1.5 py-0.5 rounded text-slate-600">
             /
           </kbd>
         </button>
 
-        {/* Mobile search button */}
         <button
           type="button"
           onClick={onOpenSearch}
-          className="md:hidden w-10 h-10 rounded-full bg-white/15 backdrop-blur-xs flex items-center justify-center text-white hover:bg-white/25 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+          className={`md:hidden ${ICON_BUTTON}`}
           aria-label="Search products"
         >
-          <SearchIcon className="w-4 h-4" />
+          <Search className="w-4 h-4" aria-hidden="true" />
         </button>
 
-        {/* Shopping bag button */}
         <button
           type="button"
           onClick={openCart}
-          className="relative w-10 h-10 rounded-full bg-white/15 backdrop-blur-xs flex items-center justify-center text-white hover:bg-white/25 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+          className={`relative ${ICON_BUTTON}`}
           aria-label={`Shopping bag with ${itemCount} items`}
         >
-          <CartBagIcon className="w-4 h-4" />
+          <ShoppingBag className="w-4 h-4" aria-hidden="true" />
           {itemCount > 0 && (
-            <span
-              className="absolute -top-1 -right-1 w-5 h-5 bg-[#F6F0C8] text-[#12291F] text-[11px] font-bold rounded-full flex items-center justify-center shadow-xs border border-black/10"
-              aria-live="polite"
-            >
+            <span className="absolute -top-1 -right-1 min-w-5 h-5 px-1 bg-offer text-navy-900 text-[11px] font-bold rounded-full flex items-center justify-center">
               {itemCount}
             </span>
           )}
         </button>
 
-        {/* Account button */}
         <button
           type="button"
           onClick={onToggleAccount}
-          className="w-10 h-10 rounded-full bg-white/15 backdrop-blur-xs flex items-center justify-center text-white hover:bg-white/25 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-          aria-label="User account details"
+          className={`hidden sm:flex ${ICON_BUTTON}`}
+          aria-label="Account details"
         >
-          <UserIcon className="w-4 h-4" />
+          <User className="w-4 h-4" aria-hidden="true" />
         </button>
       </div>
     </header>

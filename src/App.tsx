@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { ShoppingBag } from 'lucide-react';
 import { CartProvider, useCart } from './hooks/useCart';
 import { Hero } from './sections/Hero';
 import { ProductShowcase } from './sections/ProductShowcase';
@@ -8,7 +9,7 @@ import { Categories } from './sections/Categories';
 import { EditorialFeature } from './sections/EditorialFeature';
 import { Gallery } from './sections/Gallery';
 import { Reviews } from './sections/Reviews';
-import { SustainabilityStatement } from './sections/SustainabilityStatement';
+import { BrandStory } from './sections/BrandStory';
 import { Newsletter } from './sections/Newsletter';
 import { ClosingStatement } from './sections/ClosingStatement';
 import { Footer } from './components/layout/Footer';
@@ -16,40 +17,46 @@ import { SearchOverlay } from './components/layout/SearchOverlay';
 import { MobileDrawer } from './components/layout/MobileDrawer';
 import { CartDrawer } from './components/layout/CartDrawer';
 import { AccountPopover } from './components/layout/AccountPopover';
+import { PolicyDialog } from './components/layout/PolicyDialog';
 import { ToastContainer, ToastMessage } from './components/ui/Toast';
+import { CategoryKey } from './data/categories';
 import { IMAGES } from './data/images';
-import { CartBagIcon } from './components/icons';
 
 function AppContent() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAccountOpen, setIsAccountOpen] = useState(false);
-  const [activeCategoryFilter, setActiveCategoryFilter] = useState<string | null>(null);
+  const [policyTitle, setPolicyTitle] = useState<string | null>(null);
+  const [activeCategoryFilter, setActiveCategoryFilter] = useState<CategoryKey | null>(null);
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
   const [showFloatingCart, setShowFloatingCart] = useState(false);
 
-  const { itemCount, openCart, isOpen: isCartOpen } = useCart();
+  const { itemCount, openCart, isOpen: isCartOpen, droppedUnavailable, ackDropped } = useCart();
 
-  const showToast = (message: string) => {
-    const newToast: ToastMessage = {
-      id: `${Date.now()}-${Math.random()}`,
-      message,
-    };
-    setToasts((prev) => [...prev, newToast]);
-  };
+  const showToast = useCallback((message: string) => {
+    setToasts((prev) => [...prev, { id: `${Date.now()}-${Math.random()}`, message }]);
+  }, []);
 
-  const dismissToast = (id: string) => {
+  const dismissToast = useCallback((id: string) => {
     setToasts((prev) => prev.filter((t) => t.id !== id));
-  };
+  }, []);
 
-  // Keyboard shortcut '/' to open search
+  useEffect(() => {
+    if (droppedUnavailable) {
+      showToast('Some items in your saved cart are no longer available.');
+      ackDropped();
+    }
+  }, [droppedUnavailable, ackDropped, showToast]);
+
+  // Keyboard shortcut '/' opens search
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      const el = document.activeElement;
       if (
         e.key === '/' &&
         !isSearchOpen &&
-        !(document.activeElement instanceof HTMLInputElement) &&
-        !(document.activeElement instanceof HTMLTextAreaElement)
+        !(el instanceof HTMLInputElement) &&
+        !(el instanceof HTMLTextAreaElement)
       ) {
         e.preventDefault();
         setIsSearchOpen(true);
@@ -59,145 +66,118 @@ function AppContent() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isSearchOpen]);
 
-  // Floating Cart Button visibility when scrolling past hero
+  // Floating cart button appears once the hero is scrolled past
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 480) {
-        setShowFloatingCart(true);
-      } else {
-        setShowFloatingCart(false);
-      }
-    };
+    const handleScroll = () => setShowFloatingCart(window.scrollY > 480);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const closeSearch = useCallback(() => setIsSearchOpen(false), []);
+  const closeMobile = useCallback(() => setIsMobileMenuOpen(false), []);
+  const closeAccount = useCallback(() => setIsAccountOpen(false), []);
+  const closePolicy = useCallback(() => setPolicyTitle(null), []);
+
   return (
-    <div className="min-h-screen bg-white text-[#1B1F1C] flex flex-col font-body selection:bg-[#F6F0C8] selection:text-[#14543B]">
-      {/* Skip to Content accessible link */}
+    <div className="min-h-screen bg-white text-ink flex flex-col font-body selection:bg-blue-50 selection:text-blue-700">
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 bg-[#14543B] text-[#F6F0C8] px-4 py-2 rounded-full font-medium shadow-lg"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 bg-blue-600 text-white px-4 py-2 rounded-md font-medium shadow-lg"
       >
         Skip to main content
       </a>
 
-      {/* Main Content Area */}
       <main id="main" className="flex-1">
-        {/* Section 1: Hero with Transparent Nav & 96% Card */}
+        {/* 1. Hero with transparent nav */}
         <Hero
           onOpenSearch={() => setIsSearchOpen(true)}
           onOpenMobileMenu={() => setIsMobileMenuOpen(true)}
           onToggleAccount={() => setIsAccountOpen((prev) => !prev)}
         />
 
-        {/* Section 2: Eco Essentials Bestselling Products */}
+        {/* 2. Featured products with category filters */}
         <ProductShowcase
           activeCategoryFilter={activeCategoryFilter}
-          onClearFilter={() => setActiveCategoryFilter(null)}
-          onSelectProduct={() => {
-            // Can open cart or showcase
-          }}
+          onSelectFilter={setActiveCategoryFilter}
         />
 
-        {/* Section 3: Kitchen Lifestyle Banner with Philosophy Scrim */}
+        {/* 3. Lifestyle banner */}
         <LifestyleBanner />
 
-        {/* Section 4: Brand Values Strip */}
+        {/* 4. Brand values */}
         <ValuesStrip />
 
-        {/* Section 5: Explore Thoughtful Categories */}
-        <Categories
-          onSelectCategory={(filterKey) => {
-            setActiveCategoryFilter(filterKey);
-          }}
-        />
+        {/* 5. Explore categories */}
+        <Categories onSelectCategory={setActiveCategoryFilter} />
 
-        {/* Section 6: Editorial Feature - Best sellers */}
+        {/* 6. Best sellers */}
         <EditorialFeature
           id="bestsellers"
           variant="text-left"
           titlePrefix="Best"
-          titleItalic="sellers"
-          description="A polished rice pot rests on a rustic wooden surface, encircled by fresh herbs, a perfect blend of durability and mindful cooking."
-          image={IMAGES.editorial.bestseller.src}
-          alt={IMAGES.editorial.bestseller.alt}
-          ctaText="Shop now →"
+          titleAccent="Sellers"
+          description="The products our customers reach for first. Browse the favourites across audio, computing and home electronics."
+          image={IMAGES.editorial.bestseller}
+          ctaText="Shop Now →"
           ctaHref="#shop"
         />
 
-        {/* Section 7: Editorial Feature - New Arrival */}
+        {/* 7. New arrivals */}
         <EditorialFeature
+          id="new-arrivals"
           variant="text-right"
           titlePrefix="New"
-          titleItalic="Arrival"
-          description="OasiSteam showcases a colourful array of fresh, seasonal vegetables, a vibrant celebration of zero-waste, planet-friendly kitchen practices."
-          image={IMAGES.editorial.newArrival.src}
-          alt={IMAGES.editorial.newArrival.alt}
-          ctaText="Shop now →"
+          titleAccent="Arrivals"
+          description="Fresh additions to the range, from the latest in personal audio to smart home essentials."
+          image={IMAGES.editorial.newArrival}
+          ctaText="Explore What's New →"
           ctaHref="#shop"
         />
 
-        {/* Section 8: Inspiration Gallery */}
+        {/* 8. Technology gallery */}
         <Gallery />
 
-        {/* Section 9: Customer Reviews Panel */}
+        {/* 9. Reviews (placeholder or verified, see data/reviews.ts) */}
         <Reviews />
 
-        {/* Section 10: Sustainability Collage & Chip Philosophy Statement */}
-        <SustainabilityStatement />
+        {/* 10. Brand story collage */}
+        <BrandStory />
 
-        {/* Section 11: Newsletter (Get Recipes 10% Off) */}
-        <Newsletter onShowToast={showToast} />
+        {/* 11. Newsletter */}
+        <Newsletter />
 
-        {/* Section 12: Closing Statement */}
-        <ClosingStatement
-          onSelectCategoryFilter={(category) => {
-            setActiveCategoryFilter(category);
-          }}
-        />
+        {/* 12. Closing statement */}
+        <ClosingStatement onSelectCategory={setActiveCategoryFilter} />
       </main>
 
-      {/* Section 13: Footer with Oversized Wordmark */}
-      <Footer onShowToast={showToast} />
+      {/* 13. Footer */}
+      <Footer onSelectCategory={setActiveCategoryFilter} onOpenPolicy={setPolicyTitle} />
 
-      {/* Floating Cart Button (visible on scroll) */}
       {showFloatingCart && !isCartOpen && (
         <button
           onClick={openCart}
-          className="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-[#14543B] text-[#F6F0C8] shadow-2xl flex items-center justify-center hover:bg-[#2C6B4D] active:scale-95 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#14543B]"
+          className="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-blue-600 text-white shadow-2xl flex items-center justify-center hover:bg-blue-700 active:scale-95 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-600"
           aria-label={`Open shopping cart with ${itemCount} items`}
         >
-          <CartBagIcon className="w-5 h-5" />
+          <ShoppingBag className="w-5 h-5" aria-hidden="true" />
           {itemCount > 0 && (
-            <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#F6F0C8] text-[#12291F] text-[11px] font-bold rounded-full flex items-center justify-center shadow-xs border border-black/10">
+            <span className="absolute -top-1 -right-1 min-w-5 h-5 px-1 bg-offer text-navy-900 text-[11px] font-bold rounded-full flex items-center justify-center">
               {itemCount}
             </span>
           )}
         </button>
       )}
 
-      {/* Modals & Drawers */}
-      <SearchOverlay
-        isOpen={isSearchOpen}
-        onClose={() => setIsSearchOpen(false)}
-      />
-
+      <SearchOverlay isOpen={isSearchOpen} onClose={closeSearch} onSelectCategory={setActiveCategoryFilter} />
       <MobileDrawer
         isOpen={isMobileMenuOpen}
-        onClose={() => setIsMobileMenuOpen(false)}
+        onClose={closeMobile}
         onOpenSearch={() => setIsSearchOpen(true)}
         onOpenAccount={() => setIsAccountOpen(true)}
       />
-
       <CartDrawer onShowToast={showToast} />
-
-      <AccountPopover
-        isOpen={isAccountOpen}
-        onClose={() => setIsAccountOpen(false)}
-      />
-
-      {/* Toast Notifications */}
+      <AccountPopover isOpen={isAccountOpen} onClose={closeAccount} />
+      <PolicyDialog title={policyTitle} onClose={closePolicy} />
       <ToastContainer toasts={toasts} onDismiss={dismissToast} />
     </div>
   );

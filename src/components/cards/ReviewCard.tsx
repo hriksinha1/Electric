@@ -1,6 +1,5 @@
 import React from 'react';
-import { Review } from '../../data/reviews';
-import { Em } from '../ui/Em';
+import { Review, REVIEWS_MODE } from '../../data/reviews';
 
 interface ReviewCardProps {
   review: Review;
@@ -10,35 +9,29 @@ interface ReviewCardProps {
 export const ReviewCard: React.FC<ReviewCardProps> = ({ review, isActive = false }) => {
   return (
     <article
-      className={`relative flex flex-col justify-between p-6 md:p-7 rounded-xl transition-all duration-300 h-full select-none ${
+      className={`relative flex flex-col justify-between p-6 md:p-7 rounded-lg transition-all duration-300 h-full select-none ${
         isActive
-          ? 'bg-white text-[#1B1F1C] shadow-md my-2 border border-black/5'
-          : 'bg-[#FAF8F1]/90 text-[#1B1F1C]/90 border border-transparent'
+          ? 'bg-white text-navy-900 shadow-md border border-navy-900/5'
+          : 'bg-white/70 text-navy-900 border border-transparent'
       }`}
     >
       <div>
-        {/* Quote Glyph */}
-        <div
-          className={`font-serif text-3xl md:text-4xl leading-none mb-3 font-bold select-none ${
-            isActive ? 'text-[#5A1A14]' : 'text-[#8A5A4A]'
-          }`}
-          aria-hidden="true"
-        >
-          “
+        <div className="flex items-start justify-between">
+          <div className="font-display text-4xl leading-none font-bold text-blue-600" aria-hidden="true">
+            “
+          </div>
+          {REVIEWS_MODE === 'placeholder' && (
+            <span className="text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-sm bg-blue-50 text-blue-700">
+              Sample
+            </span>
+          )}
         </div>
-
-        {/* Review Quote Text */}
-        <p className="font-body text-sm md:text-[15px] leading-relaxed text-[#1B1F1C]">
-          {review.quote}
-        </p>
+        <p className="font-body text-sm md:text-[15px] leading-relaxed mt-2">{review.quote}</p>
       </div>
 
-      {/* Author & Role */}
-      <div className="mt-6 pt-4 border-t border-black/5">
-        <p className="font-body text-sm font-medium text-[#1B1F1C]">
-          {review.firstName} <Em>{review.lastName}</Em>
-        </p>
-        <p className="font-body text-xs text-[#5E615C] mt-0.5">{review.role}</p>
+      <div className="mt-6 pt-4 border-t border-navy-900/10">
+        <p className="font-body text-sm font-medium">{review.author}</p>
+        {review.role && <p className="font-body text-xs text-slate-600 mt-0.5">{review.role}</p>}
       </div>
     </article>
   );

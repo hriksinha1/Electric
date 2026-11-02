@@ -16,6 +16,9 @@ const walk = (d) => {
   });
 };
 
+// The one deliberate reference: the pre-rebrand cart storage key that useCart deletes.
+const ALLOWED = /homedine-cart-v1/g;
+const scrub = (s) => s.replace(ALLOWED, '');
 const BANNED = /homedine|kitchenware|eco-friendly|bamboo|cookware|ceramic|rice ?cooker|dutch oven|cupeco|ecospoonery|naturesip|freshpitcher|glasskeep|oasisteam/i;
 
 if (mode === '--source') {
@@ -24,7 +27,7 @@ if (mode === '--source') {
   );
   for (const f of files) {
     const s = readFileSync(f, 'utf8');
-    if (BANNED.test(s)) fail(`${f}: stale brand or kitchenware text`);
+    if (BANNED.test(scrub(s))) fail(`${f}: stale brand or kitchenware text`);
     if (f !== 'index.html' && /['"`]\/src\/assets\//.test(s))
       fail(`${f}: string path to /src/assets (import the file instead)`);
   }
@@ -39,7 +42,7 @@ if (mode === '--dist') {
   for (const f of files.filter((x) => /\.(html|js|css)$/.test(x))) {
     const s = readFileSync(f, 'utf8');
     if (/\/src\/assets\//.test(s)) fail(`${f}: unresolved /src/assets path in build output`);
-    if (BANNED.test(s)) fail(`${f}: stale brand or kitchenware text in build output`);
+    if (BANNED.test(scrub(s))) fail(`${f}: stale brand or kitchenware text in build output`);
   }
   if (files.some((f) => f.includes('aistudio')))
     fail('dist contains design files from public/assets/aistudio');

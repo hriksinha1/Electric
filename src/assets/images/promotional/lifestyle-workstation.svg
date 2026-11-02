@@ -39,7 +39,7 @@
     <path d="M0 150 L260 150 L280 190 L-20 190 Z" fill="#1E293B"/>
   </g>
 
-  <!-- Indoor Plant in Ceramic Pot (Left on Desk) -->
+  <!-- Indoor Plant in Plant Pot (Left on Desk) -->
   <g transform="translate(760, 480)">
     <!-- Pot -->
     <path d="M30 80 L10 160 L90 160 L70 80 Z" fill="#475569"/>

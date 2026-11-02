@@ -1,43 +1,30 @@
 import React from 'react';
+import { Headset, ShieldCheck, Sparkles } from 'lucide-react';
 import { BrandValue } from '../../data/values';
-import { LeafIcon, GlobeIcon, SproutHandIcon } from '../icons';
-import { Em } from '../ui/Em';
 
 interface ValueTileProps {
   value: BrandValue;
 }
 
+const ICONS = { sparkles: Sparkles, shield: ShieldCheck, headset: Headset } as const;
+
 export const ValueTile: React.FC<ValueTileProps> = ({ value }) => {
-  const renderIcon = () => {
-    switch (value.icon) {
-      case 'leaf':
-        return <LeafIcon className="w-5 h-5 text-[#14543B]" />;
-      case 'globe':
-        return <GlobeIcon className="w-5 h-5 text-[#14543B]" />;
-      case 'sprout':
-        return <SproutHandIcon className="w-5 h-5 text-[#14543B]" />;
-    }
-  };
+  const Icon = ICONS[value.icon];
 
   return (
     <div
-      className={`flex items-center justify-center gap-3.5 px-6 py-6 bg-[#EEEFDC] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xs ${
-        value.isPill ? 'rounded-full shadow-xs' : 'rounded-2xl'
+      className={`flex items-center gap-3.5 px-6 py-6 bg-blue-50 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-sm ${
+        value.isPill ? 'rounded-full' : 'rounded-xl'
       }`}
     >
-      {/* 48px White circular icon holder */}
       <div className="w-11 h-11 md:w-12 md:h-12 rounded-full bg-white flex items-center justify-center shrink-0 shadow-xs">
-        {renderIcon()}
+        <Icon className="w-5 h-5 text-blue-600" aria-hidden="true" />
       </div>
-
-      {/* Two line label */}
-      <div className="flex flex-col text-left leading-tight">
-        <span className="font-display text-base md:text-lg text-[#1B1F1C]">
-          <Em className="text-[#12291F]">{value.firstWord}</Em>
-        </span>
-        <span className="font-display text-base md:text-lg font-normal text-[#1B1F1C]">
-          {value.secondWord}
-        </span>
+      <div className="flex flex-col text-left leading-tight min-w-0">
+        <h3 className="font-display text-base md:text-lg font-medium text-navy-900">
+          {value.firstWord} {value.secondWord}
+        </h3>
+        <p className="font-body text-xs md:text-sm text-slate-600 mt-1">{value.description}</p>
       </div>
     </div>
   );

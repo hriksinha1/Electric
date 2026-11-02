@@ -1,4 +1,6 @@
 import {createRoot} from 'react-dom/client';
+import '@fontsource-variable/bricolage-grotesque';
+import '@fontsource-variable/dm-sans';
 import App from './App.tsx';
 import './index.css';
 

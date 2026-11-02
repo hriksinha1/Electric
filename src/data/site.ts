@@ -1,4 +1,27 @@
-export const SITE_CONFIG = {
+export interface SocialLink {
+  label: string;
+  href: string;
+}
+
+export interface SiteContact {
+  email?: string;
+  phone?: string;
+  address?: string;
+}
+
+export type PolicyKey = 'privacy' | 'terms' | 'shipping' | 'returns';
+
+export interface SiteConfig {
+  brandName: string;
+  tagline: string;
+  currency: { code: string; locale: string };
+  navLinks: { label: string; href: string }[];
+  contact: SiteContact | null;
+  social: SocialLink[];
+  policies: Record<PolicyKey, boolean>;
+}
+
+export const SITE_CONFIG: SiteConfig = {
   brandName: 'SunshineElectric',
   tagline: 'Electronics & Electrical Essentials',
   currency: {

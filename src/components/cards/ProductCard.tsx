@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
+import { Check, Clock, X } from 'lucide-react';
 import { Product, ProductVariant } from '../../data/products';
+import { CATEGORIES } from '../../data/categories';
+import { formatPrice } from '../../lib/format';
 import { Badge } from '../ui/Badge';
 import { Button } from '../ui/Button';
+import { SafeImage } from '../ui/SafeImage';
 import { useCart } from '../../hooks/useCart';
 
 interface ProductCardProps {
@@ -9,9 +13,25 @@ interface ProductCardProps {
   onSelect?: (product: Product) => void;
 }
 
+const AVAILABILITY = {
+  'in-stock': { label: 'In stock', Icon: Check, tone: 'text-slate-600' },
+  preorder: { label: 'Pre-order', Icon: Clock, tone: 'text-slate-600' },
+  'out-of-stock': { label: 'Out of stock', Icon: X, tone: 'text-slate-600' },
+} as const;
+
 export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) => {
-  const [selectedVariant, setSelectedVariant] = useState<ProductVariant>(product.variants[0]);
+  const [selectedVariant, setSelectedVariant] = useState<ProductVariant | undefined>(
+    product.variants?.[0]
+  );
   const { addItem } = useCart();
+
+  const categoryName = CATEGORIES.find((c) => c.key === product.category)?.name ?? product.category;
+  const availability = AVAILABILITY[product.availability];
+  const isOutOfStock = product.availability === 'out-of-stock';
+  const discount =
+    product.originalPrice && product.originalPrice > product.price
+      ? Math.round((1 - product.price / product.originalPrice) * 100)
+      : null;
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -20,78 +40,98 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) =
 
   return (
     <article
-      className="group flex flex-col h-full bg-[#FAF8F1] rounded-xl overflow-hidden transition-all duration-300 hover:shadow-md"
+      className="group flex flex-col h-full bg-neutral-50 rounded-lg overflow-hidden transition-shadow duration-300 hover:shadow-md"
       onClick={() => onSelect?.(product)}
     >
-      {/* 7:9 Image container on warm stone gradient */}
-      <div className="relative aspect-[7/9] w-full bg-gradient-to-b from-[#C9C8C1] to-[#EFECE4] overflow-hidden flex items-center justify-center p-6">
-        {/* Badge */}
+      <div className="relative aspect-[4/5] w-full bg-gradient-to-b from-mist to-neutral-50 overflow-hidden flex items-center justify-center p-6">
         {product.badge && (
-          <div className="absolute top-4 left-4 z-10">
-            <Badge>{product.badge}</Badge>
+          <div className="absolute top-3 left-3 z-10">
+            <Badge tone={product.badge === 'Deal' ? 'offer' : 'default'}>{product.badge}</Badge>
           </div>
         )}
-
-        {/* Product photo with scale hover */}
-        <img
-          src={selectedVariant.image || product.image}
-          alt={product.alt}
-          loading="lazy"
-          decoding="async"
-          className="w-[82%] h-[82%] object-contain drop-shadow-md transition-transform duration-500 ease-out group-hover:scale-105"
+        <SafeImage
+          slot={product.image}
+          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 48vw, 85vw"
+          className="!w-[80%] !h-[80%] object-contain drop-shadow-md transition-transform duration-500 ease-out group-hover:scale-105"
         />
       </div>
 
-      {/* Info Area */}
-      <div className="flex flex-col flex-1 p-4 bg-[#FAF8F1]">
-        {/* Swatches */}
-        <div
-          className="flex items-center gap-2 mb-2.5"
-          role="radiogroup"
-          aria-label={`Color variants for ${product.title}`}
-        >
-          {product.variants.map((v) => {
-            const isSelected = selectedVariant.id === v.id;
-            return (
-              <button
-                key={v.id}
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setSelectedVariant(v);
-                }}
-                className={`w-3.5 h-3.5 rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-[#14543B] ${
-                  isSelected ? 'ring-2 ring-offset-1 ring-[#14543B] scale-110' : 'opacity-85 hover:opacity-100'
-                }`}
-                style={{ backgroundColor: v.color }}
-                aria-label={v.name}
-                aria-checked={isSelected}
-                role="radio"
-              />
-            );
-          })}
-        </div>
+      <div className="flex flex-col flex-1 p-4">
+        <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-600">
+          {categoryName}
+        </span>
 
-        {/* Title (2-line clamp) */}
-        <h3 className="font-body text-[15px] font-normal leading-snug text-[#1B1F1C] line-clamp-2 min-h-[2.6rem] mb-3">
+        <h3 className="font-body text-[15px] font-medium leading-snug text-navy-900 line-clamp-2 min-h-[2.6rem] mt-1">
           {product.title}
         </h3>
 
-        {/* Price & Action */}
-        <div className="mt-auto flex items-center justify-between pt-1">
-          <span className="font-display text-base font-semibold text-[#1B1F1C] tabular-nums">
-            ${product.price.toFixed(2)}
-          </span>
-          <Button
-            variant="primary"
-            size="md"
-            onClick={handleAddToCart}
-            aria-label={`Add ${product.title} to cart`}
-            className="!h-8 !px-3.5 !text-xs font-medium"
+        {product.variants && product.variants.length > 0 && (
+          <div
+            className="flex items-center gap-2 mt-2"
+            role="radiogroup"
+            aria-label={`Colour options for ${product.title}`}
           >
-            + Cart
-          </Button>
+            {product.variants.map((v) => {
+              const isSelected = selectedVariant?.id === v.id;
+              return (
+                <button
+                  key={v.id}
+                  type="button"
+                  role="radio"
+                  aria-checked={isSelected}
+                  aria-label={v.name}
+                  title={v.name}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedVariant(v);
+                  }}
+                  className={`w-4 h-4 rounded-full border border-navy-900/15 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-blue-600 ${
+                    isSelected ? 'ring-2 ring-offset-1 ring-blue-600' : 'hover:scale-110'
+                  }`}
+                  style={{ backgroundColor: v.color }}
+                />
+              );
+            })}
+          </div>
+        )}
+
+        <div className="mt-3 flex items-baseline gap-2 flex-wrap">
+          <span className="font-display text-lg font-semibold text-navy-900 tabular-nums">
+            {formatPrice(product.price)}
+          </span>
+          {discount !== null && product.originalPrice && (
+            <>
+              <span className="text-xs text-slate-600 line-through tabular-nums">
+                {formatPrice(product.originalPrice)}
+              </span>
+              <span className="text-xs font-semibold text-navy-900 bg-offer px-1.5 py-0.5 rounded-sm">
+                −{discount}%
+              </span>
+            </>
+          )}
         </div>
+
+        <p className={`mt-1 flex items-center gap-1 text-xs ${availability.tone}`}>
+          <availability.Icon className="w-3.5 h-3.5" aria-hidden="true" />
+          <span>{availability.label}</span>
+        </p>
+
+        <Button
+          variant="primary"
+          size="md"
+          onClick={handleAddToCart}
+          disabled={isOutOfStock}
+          aria-label={
+            isOutOfStock
+              ? `${product.title} is out of stock`
+              : `${product.availability === 'preorder' ? 'Pre-order' : 'Add'} ${product.title}${
+                  product.availability === 'preorder' ? '' : ' to cart'
+                }`
+          }
+          className="mt-4 w-full"
+        >
+          {isOutOfStock ? 'Out of stock' : product.availability === 'preorder' ? 'Pre-order' : 'Add to cart'}
+        </Button>
       </div>
     </article>
   );

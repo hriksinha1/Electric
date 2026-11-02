@@ -1,58 +1,42 @@
 import React from 'react';
-import { Category } from '../../data/categories';
-import { Button } from '../ui/Button';
-import { Em } from '../ui/Em';
+import { ArrowRight } from 'lucide-react';
+import { Category, CategoryKey } from '../../data/categories';
+import { SafeImage } from '../ui/SafeImage';
 
 interface CategoryCardProps {
   category: Category;
-  onFilter: (filterKey: string) => void;
+  onFilter: (key: CategoryKey) => void;
 }
 
 export const CategoryCard: React.FC<CategoryCardProps> = ({ category, onFilter }) => {
   const handleClick = () => {
-    onFilter(category.filterKey);
-    const shopSection = document.getElementById('shop');
-    if (shopSection) {
-      shopSection.scrollIntoView({ behavior: 'smooth' });
-    }
+    onFilter(category.key);
+    document.getElementById('shop')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <div
-      onClick={handleClick}
-      className="group relative aspect-[2/3] w-full rounded-xl overflow-hidden cursor-pointer select-none"
-    >
-      {/* Background Image */}
-      <img
-        src={category.image}
-        alt={category.alt}
-        loading="lazy"
-        decoding="async"
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-      />
+    <div className="group relative aspect-[2/3] w-full rounded-lg overflow-hidden select-none">
+      {category.image && (
+        <SafeImage
+          slot={category.image}
+          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 48vw, 85vw"
+          className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-105"
+        />
+      )}
 
-      {/* Bottom Scrim */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#08120E]/90 via-[#08120E]/30 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-950/30 to-transparent pointer-events-none" />
 
-      {/* Card Content (Center-Bottom) */}
       <div className="absolute inset-x-0 bottom-0 p-5 flex flex-col items-center text-center text-white z-10">
-        <span className="font-display text-sm tracking-wide text-white/90">Explore</span>
-        <h3 className="font-display text-xl text-white mt-0.5 mb-3.5 tracking-tight">
-          <Em className="text-white">{category.name}</Em>
-        </h3>
-
-        <Button
-          variant="cream"
-          size="xs"
-          onClick={(e) => {
-            e.stopPropagation();
-            handleClick();
-          }}
-          className="shadow-md !h-7.5 !px-3.5 !text-xs"
+        <h3 className="font-display text-xl font-medium tracking-tight mb-3.5">{category.name}</h3>
+        <button
+          type="button"
+          onClick={handleClick}
+          aria-label={`Shop ${category.name}`}
+          className="inline-flex items-center gap-1 h-8 px-3.5 rounded-md bg-blue-600 text-white text-xs font-semibold hover:bg-blue-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-navy-950"
         >
           <span>Shop</span>
-          <span className="ml-1 text-xs group-hover:translate-x-0.5 transition-transform">→</span>
-        </Button>
+          <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+        </button>
       </div>
     </div>
   );

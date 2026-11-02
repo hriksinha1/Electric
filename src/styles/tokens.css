@@ -11,8 +11,11 @@
   --color-slate-500: #64748B;
   --color-offer: #F59E0B;
   --color-paper: #FFFFFF;
-  --font-display: 'Bricolage Grotesque', system-ui, -apple-system, sans-serif;
-  --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --color-mist: #EEF2F7;
+  --color-cloud: #CBD5E1;
+  --color-slate-400: #94A3B8;
+  --font-display: 'Bricolage Grotesque Variable', system-ui, -apple-system, sans-serif;
+  --font-body: 'DM Sans Variable', system-ui, -apple-system, sans-serif;
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;

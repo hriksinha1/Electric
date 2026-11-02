@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { ImageOff } from 'lucide-react';
 import { ImageSlot } from '../../data/images';
 
-interface SafeImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+interface SafeImageProps
+  extends Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'src' | 'alt' | 'width' | 'height' | 'slot'> {
   slot: ImageSlot;
+  /** Hero only: loads eagerly with high fetch priority. */
   priority?: boolean;
-  className?: string;
   fallbackClassName?: string;
 }
 
@@ -18,16 +19,17 @@ export const SafeImage: React.FC<SafeImageProps> = ({
   ...props
 }) => {
   const [hasError, setHasError] = useState(false);
+  const alt = slot.decorative ? '' : slot.alt;
 
   if (hasError) {
     return (
       <div
-        className={`w-full h-full min-h-[140px] bg-[#F7F8FA] border border-[#CBD5E1]/40 rounded-lg flex flex-col items-center justify-center p-4 text-[#475569] select-none ${fallbackClassName}`}
+        className={`w-full h-full min-h-[96px] bg-neutral-50 border border-cloud/60 flex flex-col items-center justify-center gap-1.5 p-3 text-slate-600 select-none ${fallbackClassName}`}
         role="img"
-        aria-label={slot.alt || 'Image unavailable'}
+        aria-label={alt || 'Image unavailable'}
       >
-        <ImageOff className="w-8 h-8 text-[#94A3B8] mb-2" aria-hidden="true" />
-        <span className="text-xs font-medium text-[#64748B]">Image unavailable</span>
+        <ImageOff className="w-6 h-6 text-slate-400" aria-hidden="true" />
+        <span className="text-[11px] font-medium">Image unavailable</span>
       </div>
     );
   }
@@ -35,7 +37,8 @@ export const SafeImage: React.FC<SafeImageProps> = ({
   return (
     <img
       src={slot.src}
-      alt={slot.alt}
+      alt={alt}
+      aria-hidden={slot.decorative ? true : undefined}
       width={slot.width}
       height={slot.height}
       loading={priority ? 'eager' : 'lazy'}
@@ -43,7 +46,7 @@ export const SafeImage: React.FC<SafeImageProps> = ({
       decoding="async"
       sizes={sizes}
       onError={() => {
-        console.error('[SafeImage] failed to load asset:', slot.src);
+        console.error('[SafeImage] failed to load', slot.src);
         setHasError(true);
       }}
       className={`w-full h-full object-cover ${className}`}

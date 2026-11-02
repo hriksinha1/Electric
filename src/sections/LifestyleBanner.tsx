@@ -1,38 +1,29 @@
 import React from 'react';
 import { Container } from '../components/ui/Container';
+import { SafeImage } from '../components/ui/SafeImage';
 import { IMAGES } from '../data/images';
 import { Em } from '../components/ui/Em';
 
 export const LifestyleBanner: React.FC = () => {
   return (
-    <section aria-label="Kitchen craftsmanship story" className="w-full py-6 md:py-8">
+    <section aria-label="Everyday technology" className="w-full py-6 md:py-8">
       <Container>
-        <div className="relative w-full aspect-[4/5] sm:aspect-[16/9] lg:aspect-[2.16/1] rounded-2xl md:rounded-3xl overflow-hidden shadow-xs">
-          {/* Lifestyle Kitchen Image */}
-          <img
-            src={IMAGES.lifestyle.src}
-            alt={IMAGES.lifestyle.alt}
-            loading="lazy"
-            decoding="async"
-            className="absolute inset-0 w-full h-full object-cover object-center select-none"
+        <div className="relative w-full aspect-[4/5] sm:aspect-[16/9] lg:aspect-[2.16/1] rounded-xl overflow-hidden bg-navy-900">
+          <SafeImage
+            slot={IMAGES.lifestyle}
+            sizes="(min-width: 1400px) 1400px, 100vw"
+            className="absolute inset-0 object-center select-none"
           />
-
-          {/* Bottom Gradient Scrim */}
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
               background:
-                'linear-gradient(0deg, rgba(12,31,23,0.92) 0%, rgba(12,31,23,0.55) 45%, rgba(12,31,23,0) 80%)',
+                'linear-gradient(0deg, rgba(11,18,32,0.92) 0%, rgba(11,18,32,0.55) 45%, rgba(11,18,32,0) 80%)',
             }}
           />
-
-          {/* Statement Overlaid at Bottom-Left */}
-          <div className="absolute inset-x-0 bottom-0 p-6 md:p-10 lg:p-12 z-10 max-w-2xl">
-            <p className="font-display text-lg sm:text-xl md:text-2xl lg:text-[1.7rem] font-light leading-snug text-white/95">
-              We craft <Em className="text-white font-normal">kitchenware</Em> you can trust for
-              years to come — through everyday meals and evolving{' '}
-              <Em className="text-white font-normal">lifestyles</Em>. Each piece is thoughtfully
-              made with <Em className="text-[#F6F0C8] font-normal">sustainable materials</Em>.
+          <div className="absolute inset-x-0 bottom-0 p-6 md:p-10 lg:p-12 z-10 max-w-[55%] min-w-[16rem]">
+            <p className="font-display text-[clamp(1.25rem,2.4vw,2rem)] font-normal leading-snug text-white text-balance">
+              Technology that fits your <Em onDark>everyday life</Em>.
             </p>
           </div>
         </div>
